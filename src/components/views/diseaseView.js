@@ -97,7 +97,10 @@ export default class DiseaseList extends Component {
 
       store.write(() => {
         Object.keys(initialDiseases).forEach(diseaseName => {
-          store.create('Question', initialDiseases[diseaseName]);
+          initialDiseases[diseaseName].forEach(node => {
+            if (node.type === 'Question') store.create('Question', node);
+            if (node.type === 'Answer') store.create('Answer', node);
+          })
         });
       })
     }

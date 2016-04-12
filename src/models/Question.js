@@ -7,12 +7,12 @@ export default class Question {
       id: 'string',
       content: 'string',
       disease: 'string',
-      children: { type: 'list', objectType: 'Answer' },
+      children: { type: 'list', objectType: 'Ref' },
     },
   };
-  
+
   get answers() {
-    return this.children || [];
+    return this.children.map(ref => ref.id) || [];
   }
 
 }
